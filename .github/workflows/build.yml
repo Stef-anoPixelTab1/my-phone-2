@@ -11,6 +11,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: LiquidGlassLauncher
     steps:
       - uses: actions/checkout@v4
 
@@ -32,11 +35,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: LiquidGlassLauncher-APK
-          path: LiquidGlassLauncher.apk
+          path: LiquidGlassLauncher/LiquidGlassLauncher.apk
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
           name: Liquid Glass Launcher build ${{ github.run_number }}
-          files: LiquidGlassLauncher.apk
+          files: LiquidGlassLauncher/LiquidGlassLauncher.apk
+        
